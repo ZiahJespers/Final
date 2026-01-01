@@ -1,0 +1,224 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+/* Cursor spotlight defaults (updated by assets/interactive-bg.js) */
+:root{
+  --cursor-x: 50vw;
+  --cursor-y: 35vh;
+}
+
+body{
+  position: relative;
+  font-family: 'Roboto';
+
+  /* Background image moved to body::after so the spotlight can render above it */
+  background: none !important;
+}
+
+/* Background image layer (under everything) */
+body::after{
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("Background4.jpeg");
+  background-size: auto;
+  background-repeat: repeat;
+  background-attachment: fixed;
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* Spotlight layer (above background image, below content) */
+body::before{
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+
+  background: radial-gradient(
+    650px circle at var(--cursor-x, 50%) var(--cursor-y, 35%),
+    rgba(255,255,255,0.12),
+    rgba(255,255,255,0.06) 18%,
+    rgba(0,0,0,0.28) 45%,
+    rgba(0,0,0,0.50) 70%,
+    rgba(0,0,0,0.62) 100%
+  );
+}
+
+/* Keep all page content above the interactive glow */
+.site-header,
+.container,
+.download-docs,
+.site-footer{
+  position: relative;
+  z-index: 1;
+}
+
+header{    background-color: transparent;
+    font-family: 'Montserrat';
+
+}
+
+pre{
+    overflow: hidden;
+    font-size: .75em;
+}
+
+a{
+    font-weight: bold;
+}
+a:hover {
+    background-color: #f4f8f8;
+    color: #ffffff;
+}
+
+/* Container styling */
+.container {
+    font-family: 'Roboto';
+    max-width: 85vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.title {
+    font-family: 'Montserrat';
+    font-size: 1em;
+    font-weight: bold;
+    text-transform: capitalize;
+    margin-top: 2em;
+}
+
+
+h1 {
+    font-family: 'Montserrat';
+    text-transform: uppercase;
+}
+h2 {
+    font-family: 'Montserrat';
+}
+h3 {
+    font-family: 'Montserrat';
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+body, p, h1, h2, h3, li, a {
+     color: #ffffff;
+}
+
+
+
+
+/* === Site chrome (naam/groep, navigatie, footer) === */
+.site-header{
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  /* Make the sticky header readable on scroll */
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.14);
+  padding: 0.75rem 1rem;
+}
+.site-header__top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.site-id{
+  color: #fff;
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.week-nav{
+  display:flex;
+  flex-wrap: wrap;
+  gap: .5rem .75rem;
+  margin-top: .75rem;
+}
+.week-nav a{
+  color:#fff;
+  text-decoration:none;
+  padding:.35rem .55rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.06);
+}
+.week-nav a:hover{
+  background: rgba(255,255,255,0.14);
+}
+
+.btn{
+  display:inline-block;
+  padding:.55rem .9rem;
+  border-radius: 999px;
+  text-decoration:none;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.10);
+  color:#fff;
+  font-weight: 600;
+}
+.btn--ghost{
+  background: transparent;
+}
+.site-footer{
+  margin-top: 3rem;
+  padding: 1.25rem 1rem;
+  border-top: none;
+  color:#fff;
+  background: transparent;
+}
+.site-footer a{
+  color:#fff;
+}
+
+.download-docs{
+  padding: 1rem;
+  margin: 1rem auto;
+  max-width: 1100px;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 16px;
+  background: rgba(255,255,255,0.06);
+  color:#fff;
+}
+.download-docs .hint{
+  opacity: .9;
+  font-size: .95rem;
+}
+.download-docs code{
+  background: rgba(0,0,0,0.35);
+  padding: .1rem .35rem;
+  border-radius: 6px;
+}
+
+/* === Navigation cleanup + hamburger menu (auto-added) === */
+/* Keep footer transparent, but DO NOT override the sticky header background */
+.site-footer { background: transparent !important; backdrop-filter: none !important; }
+.site-footer { color: inherit; }
+.site-id { color: inherit; }
+.week-nav { display: flex; flex-wrap: wrap; gap: .5rem .75rem; margin-top: .75rem; }
+.week-nav a { display: inline-block; padding: .25rem .4rem; text-decoration: none; }
+.week-nav a:hover { text-decoration: underline; background: transparent; }
+
+.hamburger{
+  display:none;
+  font-size:1.8rem;
+  line-height:1;
+  background: transparent;
+  border: 0;
+  padding: .25rem .4rem;
+  cursor: pointer;
+}
+
+@media (max-width: 768px){
+  .hamburger{ display:block; }
+  .week-nav{ display:none; flex-direction: column; align-items: flex-start; margin-top: .5rem; }
+  .week-nav.open{ display:flex; }
+}
